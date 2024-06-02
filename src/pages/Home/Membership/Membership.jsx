@@ -28,7 +28,7 @@ function CheckIcon() {
 
 const Membership = () => {
   return (
-    <div className="flex gap-6">
+    <div className="flex my-24 gap-6">
       <Card
         color="gray"
         variant="gradient"
