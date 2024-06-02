@@ -1,7 +1,11 @@
+import { StickyNavbar } from "../../components/Navbar/Navbar";
+import Banner from "./Banner/Banner";
+
 const Home = () => {
     return (
-        <div>
-            
+        <div className="container mx-auto">
+            <StickyNavbar></StickyNavbar>
+            <Banner></Banner>
         </div>
     );
 };
