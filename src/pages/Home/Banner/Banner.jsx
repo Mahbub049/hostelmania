@@ -2,7 +2,7 @@ import { Carousel, Typography, Button, Input } from "@material-tailwind/react";
 
 const Banner = () => {
   return (
-    <div>
+    <div className="mb-24">
       <Carousel className="rounded-xl h-[600px]">
         <div className="relative h-full w-full">
           <img
@@ -29,7 +29,7 @@ const Banner = () => {
                 quality of air that emanation from old trees, that so
                 wonderfully changes and renews a weary spirit.
               </Typography>
-              <div className="flex relative justify-center gap-2">
+              <div className="flex relative justify-center w-3/4 mx-auto gap-2">
                 <Input
                   type="search"
                   color="white"
