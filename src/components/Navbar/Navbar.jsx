@@ -8,6 +8,7 @@ import {
   IconButton,
   Card,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 export function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -64,13 +65,15 @@ export function StickyNavbar() {
         <div className="flex items-center gap-4">
           <div className="mr-4 hidden lg:block">{navList}</div>
           <div className="flex items-center gap-x-1">
-            <Button
-              variant="gradient"
-              size="sm"
-              className="hidden lg:inline-block"
-            >
-              <span>Join Us</span>
-            </Button>
+            <Link to={'/signup'}>
+              <Button
+                variant="gradient"
+                size="sm"
+                className="hidden lg:inline-block"
+              >
+                <span>Join Us</span>
+              </Button>
+            </Link>
           </div>
           <IconButton
             variant="text"
