@@ -1,0 +1,74 @@
+[
+    {
+      "id": "1",
+      "title": "Pancakes",
+      "image": "pancakes.jpg",
+      "rating": 4.5,
+      "price": 5.99,
+      "category": "breakfast"
+    },
+    {
+      "id": "2",
+      "title": "Omelette",
+      "image": "omelette.jpg",
+      "rating": 4.7,
+      "price": 4.99,
+      "category": "breakfast"
+    },
+    {
+      "id": "3",
+      "title": "French Toast",
+      "image": "french_toast.jpg",
+      "rating": 4.6,
+      "price": 5.49,
+      "category": "breakfast"
+    },
+    {
+      "id": "4",
+      "title": "Grilled Chicken Sandwich",
+      "image": "chicken_sandwich.jpg",
+      "rating": 4.8,
+      "price": 7.99,
+      "category": "lunch"
+    },
+    {
+      "id": "5",
+      "title": "Caesar Salad",
+      "image": "caesar_salad.jpg",
+      "rating": 4.5,
+      "price": 6.99,
+      "category": "lunch"
+    },
+    {
+      "id": "6",
+      "title": "Spaghetti Carbonara",
+      "image": "spaghetti_carbonara.jpg",
+      "rating": 4.7,
+      "price": 8.99,
+      "category": "lunch"
+    },
+    {
+      "id": "7",
+      "title": "Steak and Potatoes",
+      "image": "steak_potatoes.jpg",
+      "rating": 4.9,
+      "price": 14.99,
+      "category": "dinner"
+    },
+    {
+      "id": "8",
+      "title": "Salmon with Asparagus",
+      "image": "salmon_asparagus.jpg",
+      "rating": 4.8,
+      "price": 13.99,
+      "category": "dinner"
+    },
+    {
+      "id": "9",
+      "title": "Vegetarian Stir Fry",
+      "image": "vegetarian_stir_fry.jpg",
+      "rating": 4.6,
+      "price": 9.99,
+      "category": "dinner"
+    }
+  ]
