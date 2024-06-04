@@ -8,8 +8,21 @@ import {
 import { StickyNavbar } from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import { useForm } from "react-hook-form";
+import useAxiosPublic from './../../hooks/useAxiosPublic.';
+import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from './../../providers/AuthProvider';
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
+  const {createUser, updateUserInfo, setUser, user, loading} = useContext(AuthContext);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -17,7 +30,75 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    data.badge = "bronze";
+    const imageFile = { image: data.image[0] };
+    const res = await axiosPublic.post(image_hosting_api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    if (res.data.success) {
+      const email = data.email;
+      const password = data.password;
+      const name = data.name;
+      const image = res.data.data.display_url;
+      const user = {
+        email,
+        name,
+        image,
+        badge: data.badge
+      }
+      createUser(email, password)
+      .then(()=>{
+          updateUserInfo(name, image)
+          .then(()=>{
+              setUser({
+                  displayName: name,
+                  photoURL: image,
+                  email: email
+              });
+              fetch('http://localhost:5000/users', {
+              method: 'POST',
+              headers: {
+                  'content-type': 'application/json'
+              },
+              body: JSON.stringify(user)
+                  })
+                  .then(res=>res.json())
+                  .then(data=>{
+                      Swal.fire({
+                          title: 'Success!',
+                          text: 'Successfully Registered!',
+                          icon: 'success',
+                          confirmButtonText: 'Okay'
+                      })
+                      navigate(location?.state ? location.state : '/')
+                  })
+              // Swal.fire({
+              //     title: 'Success!',
+              //     text: 'Successfully Registered!',
+              //     icon: 'success',
+              //     confirmButtonText: 'Okay'
+              //   })
+          })
+          .catch(()=>{   
+              toast.error("Something went wrong!");
+          })
+      })
+      .catch(()=>{
+          toast.error("This email already exists!");
+      })
+
+      // const menuItem = {
+      //   name: data.name,
+      //   recipe: data.recipe,
+      //   category: data.category,
+      //   price: parseFloat(data.price),
+      //   image: res.data.data.display_url,
+      // };
+    }
+  };
   return (
     <div className="container mx-auto">
       <StickyNavbar></StickyNavbar>
@@ -38,6 +119,7 @@ const SignUp = () => {
                 size="lg"
                 {...register("name", { required: true })}
                 type="text"
+                name="name"
                 placeholder="Mahbub Sarwar"
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
@@ -52,6 +134,7 @@ const SignUp = () => {
                 <span className="sr-only">Choose profile photo</span>
                 <input
                   type="file"
+                  name="image"
                   {...register("image", { required: true })}
                   className="block w-full text-sm text-slate-500
                     file:mr-4 file:py-2 file:px-4
@@ -70,6 +153,7 @@ const SignUp = () => {
                 size="lg"
                 {...register("email", { required: true })}
                 type="email"
+                name="email"
                 placeholder="name@mail.com"
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
                 labelProps={{
@@ -83,6 +167,7 @@ const SignUp = () => {
               <Input
                 type="password"
                 size="lg"
+                name="password"
                 {...register("password", { required: true })}
                 placeholder="********"
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -110,15 +195,15 @@ const SignUp = () => {
               }
               containerProps={{ className: "-ml-2.5" }}
               color="#5271FF"
-            />
-            <Button className="mt-6 bg-[#5271FF]" fullWidth>
-              <input type="submit" value="Sign Up"/>
-            </Button>
+            /> <br />
+            {/* <Button type="submit" className="mt-6 bg-[#5271FF]" fullWidth> */}
+              <input type="submit" className="mt-6 bg-[#5271FF] w-full cursor-pointer text-sm py-3 rounded-lg text-white" value="Sign Up"/>
+            {/* </Button> */}
             <Typography color="gray" className="mt-4 text-center font-normal">
               Already have an account?{" "}
-              <a href="#" className="font-medium text-gray-900">
+              <Link to={'/login'} href="#" className="font-medium text-gray-900">
                 Sign In
-              </a>
+              </Link>
             </Typography>
           </form>
         </Card>

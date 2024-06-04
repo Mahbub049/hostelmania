@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BellIcon } from "@heroicons/react/24/solid";
 import {
   Navbar,
@@ -9,9 +9,23 @@ import {
   Card,
 } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+
 
 export function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
+  const {user, logOut} = useContext(AuthContext);
+
+  const signOutUser = () => {
+    logOut()
+    .then(()=>{})
+    .catch(()=>{})
+}
+
+const userLists = 
+<>
+  <li><Link to={'/dashboard'}>Dashboard</Link></li>
+</>
 
   React.useEffect(() => {
     window.addEventListener(
@@ -64,6 +78,24 @@ export function StickyNavbar() {
         <NavLink to={'/'}><img src="../../../public/logo.png" className="w-48" alt="" /></NavLink>
         <div className="flex items-center gap-4">
           <div className="mr-4 hidden lg:block">{navList}</div>
+          {user ? <>
+                    <div className="dropdown dropdown-end z-10">
+                        {/* <Tooltip className="z-10" id="my-tooltip" /> */}
+                        <div className="tooltip" data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName} data-tooltip-place="left">
+                            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                <div className="w-10 rounded-full">
+                                <div className="z-10">
+                                    <img referrerpolicy="no-referrer" alt="User" src={user.photoURL? user.photoURL : <FaRegUserCircle />} />
+                                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow active:z-10 bg-base-100 rounded-box w-52">
+                                        {userLists}
+                                    </ul>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button onClick={signOutUser} className="btn text-white lg:ml-4 bg-[#5271FF]">Log Out</button>
+                </> :
           <div className="flex items-center gap-x-1">
             <Link to={'/signup'}>
               <Button
@@ -74,7 +106,7 @@ export function StickyNavbar() {
                 <span>Join Us</span>
               </Button>
             </Link>
-          </div>
+          </div>}
           <IconButton
             variant="text"
             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
