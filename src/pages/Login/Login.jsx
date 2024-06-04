@@ -19,9 +19,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
+import useAxiosPublic from "../../hooks/useAxiosPublic.";
 
 const Login = () => {
   const { login, googleLogin, user, loading } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -49,22 +51,30 @@ const Login = () => {
       })
       .catch((error) => {
         Swal.fire({
-            title: "Logged In!",
-            text: "Your email or password didn't matched",
-            icon: "error",
-          });
+          title: "Logged In!",
+          text: "Your email or password didn't matched",
+          icon: "error",
+        });
         // toast.error("Your email or password didn't matched!");
       });
   };
   const googleUserLogin = () => {
     googleLogin()
-      .then(() => {
-        Swal.fire({
-          title: "Logged In!",
-          text: "You have successfully Logged In",
-          icon: "success",
+      .then((result) => {
+        const userInfo = {
+          email: result.user?.email,
+          name: result.user?.displayName,
+          image: result.user?.photoURL,
+          badge: "bronze"
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          Swal.fire({
+            title: "Logged In!",
+            text: "You have successfully Logged In",
+            icon: "success",
+          });
+          navigate(location?.state ? location.state : "/");
         });
-        navigate(location?.state ? location.state : "/");
       })
       .catch(() => {
         toast.error("Please Try Again!");
@@ -139,14 +149,14 @@ const Login = () => {
           </Typography>
         </form>
       </div>
-        <div className="flex flex-col -mt-16">
-          <h2 className="text-center text-sm poppins">Login With</h2>
-          <div className="flex justify-center">
-            <button onClick={googleUserLogin} className="btn mt-2">
-              <FcGoogle className="text-2xl"></FcGoogle>
-            </button>
-          </div>
+      <div className="flex flex-col -mt-16">
+        <h2 className="text-center text-sm poppins">Login With</h2>
+        <div className="flex justify-center">
+          <button onClick={googleUserLogin} className="btn mt-2">
+            <FcGoogle className="text-2xl"></FcGoogle>
+          </button>
         </div>
+      </div>
       <Footer></Footer>
     </div>
   );
