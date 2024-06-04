@@ -24,7 +24,9 @@ export function StickyNavbar() {
 
 const userLists = 
 <>
+  <li className="my-1 text-left ml-3 text-blue-400" disabled>{user?.displayName}</li>
   <li><Link to={'/dashboard'}>Dashboard</Link></li>
+  <li><button onClick={signOutUser}>Log Out</button></li>
 </>
 
   React.useEffect(() => {
@@ -94,7 +96,6 @@ const userLists =
                             </div>
                         </div>
                     </div>
-                    <button onClick={signOutUser} className="btn text-white lg:ml-4 bg-[#5271FF]">Log Out</button>
                 </> :
           <div className="flex items-center gap-x-1">
             <Link to={'/signup'}>
