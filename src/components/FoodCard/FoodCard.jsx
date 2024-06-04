@@ -15,7 +15,7 @@ const FoodCard = ({ item }) => {
     <div>
       <Card className="w-full max-w-[26rem] shadow-lg">
         <CardHeader floated={false} color="blue-gray">
-          <img src={image} alt="ui/ux review check" />
+          <img src={image} className="h-[250px] w-full" alt="ui/ux review check" />
           <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
           <IconButton
             size="sm"
