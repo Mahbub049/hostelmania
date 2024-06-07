@@ -5,6 +5,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic.";
 import { FaEye, FaTrashAlt } from "react-icons/fa";
 import { GrUpdate } from "react-icons/gr";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const AllMeals = () => {
   const axiosPublic = useAxiosPublic();
@@ -16,6 +17,7 @@ const AllMeals = () => {
       return res.data;
     },
   });
+
   const handleDelete = id => {
     Swal.fire({
         title: "Are you sure?",
@@ -73,12 +75,11 @@ const AllMeals = () => {
                     <td>{item.reviews}</td>
                     <td>{item.name}</td>
                     <td>
-                      <button
-                        onClick={() => handleDeleteUser(user)}
+                      <Link to={`/dashboard/update/${item._id}`}
                         className="btn btn-ghost btn-lg"
                       >
                         <GrUpdate className="text-blue-600 text-sm"></GrUpdate>
-                      </button>
+                      </Link>
                     </td>
                     <td>
                       <button

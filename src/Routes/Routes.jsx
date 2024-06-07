@@ -11,6 +11,7 @@ import AdminRoute from "./AdminRoute";
 import Users from "../pages/Dashboard/Users/Users";
 import AddItems from './../pages/Dashboard/AddItems/AddItems';
 import AllMeals from "../pages/Dashboard/AllMeals/AllMeals";
+import Update from "../pages/Dashboard/AllMeals/Update/Update";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,12 @@ const router = createBrowserRouter([
       {
         path: 'allMeals',
         element: <AllMeals></AllMeals>
+      },
+      {
+        path: 'update/:id',
+        element: <Update></Update>,
+        loader: ({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
+        
       }
     ],
   },
