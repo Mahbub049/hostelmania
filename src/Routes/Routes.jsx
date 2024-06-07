@@ -9,6 +9,8 @@ import Dashboard from "../Layout/Dashboard";
 import Profile from "../pages/Dashboard/Profile/Profile";
 import AdminRoute from "./AdminRoute";
 import Users from "../pages/Dashboard/Users/Users";
+import AddItems from './../pages/Dashboard/AddItems/AddItems';
+import AllMeals from "../pages/Dashboard/AllMeals/AllMeals";
 
 const router = createBrowserRouter([
   {
@@ -46,8 +48,16 @@ const router = createBrowserRouter([
         element: <Profile></Profile>,
       },
       {
+        path: 'addItems',
+        element: <AddItems></AddItems>
+      },
+      {
         path: 'users',
         element: <Users></Users>
+      },
+      {
+        path: 'allMeals',
+        element: <AllMeals></AllMeals>
       }
     ],
   },

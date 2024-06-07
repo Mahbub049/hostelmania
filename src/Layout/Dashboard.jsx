@@ -46,11 +46,11 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/addItems">
                   <FaUtensils></FaUtensils>
-                  Add Items
+                  Add Meal
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageItems">
+                <NavLink to="/dashboard/allMeals">
                   <FaList></FaList>
                   Manage Items
                 </NavLink>
