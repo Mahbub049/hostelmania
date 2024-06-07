@@ -4,9 +4,11 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic.";
 import { FaEye, FaTrashAlt } from "react-icons/fa";
 import { GrUpdate } from "react-icons/gr";
+import Swal from "sweetalert2";
 
 const AllMeals = () => {
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: menu = [], refetch } = useQuery({
     queryKey: ["menu"],
     queryFn: async () => {
@@ -14,6 +16,31 @@ const AllMeals = () => {
       return res.data;
     },
   });
+  const handleDelete = id => {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axiosSecure.delete(`/menu/${id}`)
+                .then(res => {
+                    if (res.data.deletedCount > 0) {
+                        refetch();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                })
+        }
+    });
+}
   return (
     <div>
       <SectionTitle
@@ -55,7 +82,7 @@ const AllMeals = () => {
                     </td>
                     <td>
                       <button
-                        onClick={() => handleDeleteUser(user)}
+                        onClick={() => handleDelete(item._id)}
                         className="btn btn-ghost btn-lg"
                       >
                         <FaTrashAlt className="text-blue-600 text-sm"></FaTrashAlt>
