@@ -15,7 +15,7 @@ import { SiCashapp } from "react-icons/si";
 import { FaSortAmountDown } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { IoTimeSharp } from "react-icons/io5";
-import useAxiosSecure from './../../../hooks/useAxiosSecure';
+import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic.";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -32,21 +32,20 @@ const AddItems = () => {
     formState: { errors },
   } = useForm();
 
-
-  const currentGetTime = () =>{
+  const currentGetTime = () => {
     const now = new Date(Date.now());
     let hours = now.getHours();
     const minutes = now.getMinutes();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const ampm = hours >= 12 ? "PM" : "AM";
     hours = hours % 12;
     hours = hours ? hours : 12;
-    const strHours = hours.toString().padStart(2, '0');
-    const strMinutes = minutes.toString().padStart(2, '0');
+    const strHours = hours.toString().padStart(2, "0");
+    const strMinutes = minutes.toString().padStart(2, "0");
     const formattedTime = `${strHours}:${strMinutes}${ampm}`;
     return formattedTime;
-  }
+  };
 
-  const onSubmit = async(data) => {
+  const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
     const res = await axiosPublic.post(image_hosting_api, imageFile, {
       headers: {
@@ -65,7 +64,7 @@ const AddItems = () => {
         description: data.description,
         time: data.time,
         like: data.like,
-        reviews: data.reviews
+        reviews: data.reviews,
       };
       const menuRes = await axiosSecure.post("/menu", menuItem);
       if (menuRes.data.insertedId) {
@@ -75,7 +74,7 @@ const AddItems = () => {
           text: "Successfully Added",
           icon: "success",
           confirmButtonText: "Okay",
-        })
+        });
       }
     }
   };
@@ -194,12 +193,16 @@ const AddItems = () => {
               </div>
               <label className="input input-bordered border-[#5c7aff] flex items-center gap-2">
                 <BiCategoryAlt className="text-[#5c7aff]" />
-                <input
+                <select
                   {...register("category", { required: true })}
                   type="text"
-                  className="grow"
+                  className="grow input-info bg-transparent border-0 outline-0 "
                   placeholder="Food Category"
-                />
+                >
+                  <option value="breakfast">Breakfast</option>
+                  <option value="lunch">Lunch</option>
+                  <option value="dinner">Dinner</option>
+                </select>
                 {errors.category && (
                   <span className="text-red-500">This field is required</span>
                 )}

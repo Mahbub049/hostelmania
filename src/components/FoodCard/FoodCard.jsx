@@ -10,7 +10,7 @@ import {
 } from "@material-tailwind/react";
 
 const FoodCard = ({ item }) => {
-  const { title, image, rating, price } = item;
+  const { foodname, image, rating, price } = item;
   return (
     <div>
       <Card className="w-full max-w-[26rem] shadow-lg">
@@ -36,7 +36,7 @@ const FoodCard = ({ item }) => {
         <CardBody>
           <div className="mb-3 flex items-center justify-between">
             <Typography variant="h5" color="blue-gray" className="font-medium">
-              {title}
+              {foodname}
             </Typography>
             <Typography
               color="blue-gray"

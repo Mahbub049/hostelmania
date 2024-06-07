@@ -1,7 +1,20 @@
+import { Chip } from "@material-tailwind/react";
+import useAdmin from "../../../hooks/useAdmin";
 import useAuth from "../../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Profile = () => {
   const { user } = useAuth();
+  const [isAdmin] = useAdmin();
+  const axiosSecure = useAxiosSecure();
+  const { data: users = [], refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
   return (
     <div>
       <div className="flex justify-center items-center mt-[200px]">
@@ -43,12 +56,20 @@ const Profile = () => {
                 </p>
 
                 <div>
-                  <button className="bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1">
+                  {
+                    isAdmin ? 
+                    <div>
+                        <p>Total Meals Added: </p>
+                    </div>:
+                    users.badge
+                    
+                  }
+                  {/* <button className="bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1">
                     Update Profile
                   </button>
                   <button className="bg-[#F43F5E] px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053]">
                     Change Password
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

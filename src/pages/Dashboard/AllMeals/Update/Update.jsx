@@ -198,13 +198,17 @@ const Update = () => {
               </div>
               <label className="input input-bordered border-[#5c7aff] flex items-center gap-2">
                 <BiCategoryAlt className="text-[#5c7aff]" />
-                <input
+                <select
                   {...register("category", { required: true })}
                   type="text"
-                  className="grow"
-                  defaultValue={category}
+                  className="grow input-info bg-transparent border-0 outline-0 "
                   placeholder="Food Category"
-                />
+                  defaultValue={category}
+                >
+                  <option value="breakfast">Breakfast</option>
+                  <option value="lunch">Lunch</option>
+                  <option value="dinner">Dinner</option>
+                </select>
                 {errors.category && (
                   <span className="text-red-500">This field is required</span>
                 )}

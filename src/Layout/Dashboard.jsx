@@ -12,6 +12,8 @@ import {
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
+import { MdFastfood, MdReviews } from "react-icons/md";
+import { GiHotMeal, GiMeal } from "react-icons/gi";
 // import useCart from "../hooks/useCart";
 // import useAdmin from "../hooks/useAdmin";
 
@@ -51,14 +53,26 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/allMeals">
-                  <FaList></FaList>
-                  Manage Items
+                  <MdFastfood></MdFastfood>
+                  Manage Meals
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/bookings">
-                  <FaBook></FaBook>
-                  Manage Bookings
+                <NavLink to="/dashboard/allReviews">
+                  <MdReviews></MdReviews>
+                  All Reviews
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/serveMeals">
+                  <GiHotMeal></GiHotMeal>
+                  Serve Meals
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/serveMeals">
+                  <GiMeal></GiMeal>
+                  Upcoming Meals
                 </NavLink>
               </li>
             </>
