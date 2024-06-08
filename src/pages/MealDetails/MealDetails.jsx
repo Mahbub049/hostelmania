@@ -9,6 +9,7 @@ import useAuth from "./../../hooks/useAuth";
 import { GiMeal } from "react-icons/gi";
 import { FcAlarmClock, FcRating } from "react-icons/fc";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 const MealDetails = () => {
   // const meal = useLoaderData();
   // const {foodname, name, description, ingredients, time, rating, like, reviews} = meal;
@@ -16,6 +17,12 @@ const MealDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const {
     data: menu = [],
@@ -42,6 +49,27 @@ const MealDetails = () => {
     reviews,
   } = menu;
 
+  const onSubmit = async (data) => {
+    const review = {
+      id: _id,
+      foodname: foodname,
+      likes: like,
+      review_count: reviews,
+      review: data.review
+    }
+    const reviewRes = await axiosPublic.post("/review", review);
+      if (reviewRes.data.insertedId) {
+        reset();
+        refetch();
+        Swal.fire({
+          title: "Success!",
+          text: "Successfully Added",
+          icon: "success",
+          confirmButtonText: "Okay",
+        });
+      }
+  };
+
   const incrementLike = async (id) => {
     console.log(id);
     const likeCount = axiosPublic.patch(`/like/${id}`, menu).then((res) => {
@@ -51,7 +79,6 @@ const MealDetails = () => {
       }
     });
   };
-
 
   return (
     <div className="container mx-auto">
@@ -101,15 +128,15 @@ const MealDetails = () => {
             </div>
             {user ? (
               <div className="mt-3 flex gap-2">
-                  <button
-                    id="likeBtn"
-                    onClick={() => {
-                      incrementLike(_id);
-                    }}
-                    className="btn flex-1 bg-blue-600 text-white"
-                  >
-                    <BiSolidLike></BiSolidLike>Like
-                  </button>
+                <button
+                  id="likeBtn"
+                  onClick={() => {
+                    incrementLike(_id);
+                  }}
+                  className="btn flex-1 bg-blue-600 text-white"
+                >
+                  <BiSolidLike></BiSolidLike>Like
+                </button>
                 <button className="btn flex-1 bg-green-600 text-white">
                   <GiMeal></GiMeal>Meal Request
                 </button>
@@ -130,6 +157,27 @@ const MealDetails = () => {
                 </Link>
               </div>
             )}
+          </div>
+        </div>
+        <div className="mt-12">
+          <div className="text-center text-blue-500">
+            <h3 className="text-2xl font-bold">REVIEWS: {reviews}</h3>
+          </div>
+          <div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <textarea
+                {...register("review", { required: true })}
+                className="textarea w-full textarea-bordered mt-6 h-24"
+                placeholder="Write your review here"
+              ></textarea>
+              <div className="text-center mt-3">
+                <input
+                  className="btn text-white btn-wide bg-blue-500"
+                  type="submit"
+                  value="Submit"
+                />
+              </div>
+            </form>
           </div>
         </div>
       </div>
