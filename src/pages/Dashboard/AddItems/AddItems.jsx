@@ -16,7 +16,7 @@ import { FaSortAmountDown } from "react-icons/fa";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { IoTimeSharp } from "react-icons/io5";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
-import useAxiosPublic from "../../../hooks/useAxiosPublic.";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;

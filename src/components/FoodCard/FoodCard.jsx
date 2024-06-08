@@ -8,9 +8,10 @@ import {
   Tooltip,
   IconButton,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const FoodCard = ({ item }) => {
-  const { foodname, image, rating, price } = item;
+  const { _id, foodname, image, rating, price } = item;
   return (
     <div>
       <Card className="w-full max-w-[26rem] shadow-lg">
@@ -62,9 +63,11 @@ const FoodCard = ({ item }) => {
           </Typography>
         </CardBody>
         <CardFooter className="pt-3">
-          <Button size="lg" fullWidth={true}>
+          <Link to={`/meal/${_id}`}>
+          <Button size="lg" color="blue" fullWidth={true}>
             Details
           </Button>
+          </Link>
         </CardFooter>
       </Card>
     </div>

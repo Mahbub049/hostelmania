@@ -5,6 +5,7 @@ import "react-tabs/style/react-tabs.css";
 import useMenu from "../../../hooks/useMenu";
 import "./Menu.css";
 import FoodCard from "../../../components/FoodCard/FoodCard";
+import SectionTitle from "./../../../components/SectionTitle/SectionTitle";
 
 const Menu = () => {
   const categories = ["breakfast", "lunch", "dinner"];
@@ -12,7 +13,7 @@ const Menu = () => {
   // const initialIndex = categories.indexOf(category);
   const [tabIndex, setTabIndex] = useState("breakfast");
   const [menu] = useMenu();
-  console.log(menu)
+  console.log(menu);
 
   const breakfast = menu.filter((item) => item.category === "breakfast");
   const lunch = menu.filter((item) => item.category === "lunch");
@@ -21,6 +22,12 @@ const Menu = () => {
 
   return (
     <div>
+      <div className="mb-12">
+        <SectionTitle
+          heading="Meals by Category"
+          subheading="Watchout latest dishes by the chefs by category"
+        ></SectionTitle>
+      </div>
       <Tabs>
         <TabList className="flex justify-center mb-8">
           <Tab>Breakfast</Tab>
@@ -31,30 +38,30 @@ const Menu = () => {
 
         <TabPanel>
           <div className="grid grid-cols-3">
-          {breakfast.map((item) => (
-            <FoodCard key={item.id} item={item}></FoodCard>
-          ))}
+            {breakfast.map((item) => (
+              <FoodCard key={item.id} item={item}></FoodCard>
+            ))}
           </div>
         </TabPanel>
         <TabPanel>
-        <div className="grid grid-cols-3">
-          {lunch.map((item) => (
-            <FoodCard key={item.id} item={item}></FoodCard>
-          ))}
+          <div className="grid grid-cols-3">
+            {lunch.map((item) => (
+              <FoodCard key={item.id} item={item}></FoodCard>
+            ))}
           </div>
         </TabPanel>
         <TabPanel>
-        <div className="grid grid-cols-3">
-          {dinner.map((item) => (
-            <FoodCard key={item.id} item={item}></FoodCard>
-          ))}
+          <div className="grid grid-cols-3">
+            {dinner.map((item) => (
+              <FoodCard key={item.id} item={item}></FoodCard>
+            ))}
           </div>
         </TabPanel>
         <TabPanel>
-        <div className="grid grid-cols-3">
-          {menu.map((item) => (
-            <FoodCard key={item.id} item={item}></FoodCard>
-          ))}
+          <div className="grid grid-cols-3">
+            {menu.map((item) => (
+              <FoodCard key={item.id} item={item}></FoodCard>
+            ))}
           </div>
         </TabPanel>
       </Tabs>

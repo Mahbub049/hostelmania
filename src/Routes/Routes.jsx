@@ -12,6 +12,7 @@ import Users from "../pages/Dashboard/Users/Users";
 import AddItems from './../pages/Dashboard/AddItems/AddItems';
 import AllMeals from "../pages/Dashboard/AllMeals/AllMeals";
 import Update from "../pages/Dashboard/AllMeals/Update/Update";
+import MealDetails from "../pages/MealDetails/MealDetails";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
       {
         path: "menu/:category",
         element: <Menu></Menu>,
+      },
+      {
+        path: 'meal/:id',
+        element: <MealDetails></MealDetails>,
+        // loader: ({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
       },
       {
         path: "login",
@@ -63,7 +69,7 @@ const router = createBrowserRouter([
       {
         path: 'update/:id',
         element: <Update></Update>,
-        loader: ({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
+        // loader: ({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
         
       }
     ],

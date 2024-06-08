@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { auth } from './../firebase/firebase.config';
 import { GoogleAuthProvider } from "firebase/auth";
 import axios from "axios";
-import useAxiosPublic from "../hooks/useAxiosPublic.";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext();
 

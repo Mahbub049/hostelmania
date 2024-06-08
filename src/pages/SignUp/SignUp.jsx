@@ -8,7 +8,7 @@ import {
 import { StickyNavbar } from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import { useForm } from "react-hook-form";
-import useAxiosPublic from './../../hooks/useAxiosPublic.';
+import useAxiosPublic from './../../hooks/useAxiosPublic';
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";

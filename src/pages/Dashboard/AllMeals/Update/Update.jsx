@@ -15,18 +15,32 @@ import { FaSortAmountDown } from "react-icons/fa";
 import { IoTimeSharp } from "react-icons/io5";
 
 import { AuthContext } from "../../../../providers/AuthProvider";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic.";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Update = () => {
   const item = useLoaderData();
+  const { id } = useParams()
+
+  const {
+    data: menu = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ['menu', id],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(`/menu/${id}`)
+      return data
+    },
+  })
   const { _id, foodname, category, price, ingredients, description, like, reviews } =
-    item;
+    menu;
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();

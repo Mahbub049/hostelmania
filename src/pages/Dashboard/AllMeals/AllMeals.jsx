@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAxiosPublic from "../../../hooks/useAxiosPublic.";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { FaEye, FaTrashAlt } from "react-icons/fa";
 import { GrUpdate } from "react-icons/gr";
 import Swal from "sweetalert2";

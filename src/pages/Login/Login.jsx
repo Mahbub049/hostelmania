@@ -19,7 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
-import useAxiosPublic from "../../hooks/useAxiosPublic.";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Login = () => {
   const { login, googleLogin, user, loading } = useContext(AuthContext);
