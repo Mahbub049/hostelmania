@@ -25,7 +25,7 @@ export function StickyNavbar() {
 const userLists = 
 <>
   <li className="my-1 text-left ml-3 text-blue-400" disabled>{user?.displayName}</li>
-  <li><Link to={'/dashboard'}>Dashboard</Link></li>
+  <li><Link to={'/dashboard/profile'}>Dashboard</Link></li>
   <li><button onClick={signOutUser}>Log Out</button></li>
 </>
 

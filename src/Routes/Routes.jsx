@@ -15,6 +15,7 @@ import Update from "../pages/Dashboard/AllMeals/Update/Update";
 import MealDetails from "../pages/MealDetails/MealDetails";
 import AllReviews from "../pages/Dashboard/AllReviews/AllReviews";
 import ServeMeals from "../pages/Dashboard/ServeMeals/ServeMeals";
+import UserRequests from "../pages/Dashboard/UserRequests/UserRequests";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile></Profile>,
+      },
+      {
+        path: 'requestedMeals',
+        element: <UserRequests></UserRequests>
       },
       {
         path: 'addItems',

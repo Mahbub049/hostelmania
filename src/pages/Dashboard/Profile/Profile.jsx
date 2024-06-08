@@ -3,11 +3,13 @@ import useAdmin from "../../../hooks/useAdmin";
 import useAuth from "../../../hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Profile = () => {
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -15,6 +17,21 @@ const Profile = () => {
       return res.data;
     },
   });
+  const { data: fooditem = [] } = useQuery({
+    queryKey: ["fooditem", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure.get(`/fooditem/${user?.email}`);
+      return data;
+    },
+  });
+  const { data: client = [] } = useQuery({
+    queryKey: ["client", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(`/users/${user?.email}`);
+      return data;
+    },
+  });
+
   return (
     <div>
       <div className="flex justify-center items-center mt-[200px]">
@@ -56,14 +73,21 @@ const Profile = () => {
                 </p>
 
                 <div>
-                  {
-                    isAdmin ? 
+                  {isAdmin ? (
                     <div>
-                        <p>Total Meals Added: </p>
-                    </div>:
-                    users.badge
-                    
-                  }
+                      <p>Total Meals Added:</p>
+                      <span className="font-bold text-black ">
+                        {fooditem.length}
+                      </span>
+                    </div>
+                  ) : (
+                    <div>
+                      <p>Badge:</p>
+                      <span className="font-bold text-black uppercase">
+                        {client.badge}
+                      </span>
+                    </div>
+                  )}
                   {/* <button className="bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1">
                     Update Profile
                   </button>
