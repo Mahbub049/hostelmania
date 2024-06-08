@@ -14,6 +14,7 @@ import AllMeals from "../pages/Dashboard/AllMeals/AllMeals";
 import Update from "../pages/Dashboard/AllMeals/Update/Update";
 import MealDetails from "../pages/MealDetails/MealDetails";
 import AllReviews from "../pages/Dashboard/AllReviews/AllReviews";
+import ServeMeals from "../pages/Dashboard/ServeMeals/ServeMeals";
 
 const router = createBrowserRouter([
   {
@@ -57,24 +58,28 @@ const router = createBrowserRouter([
       },
       {
         path: 'addItems',
-        element: <AddItems></AddItems>
+        element: <AdminRoute><AddItems></AddItems></AdminRoute>
       },
       {
         path: 'users',
-        element: <Users></Users>
+        element: <AdminRoute><Users></Users></AdminRoute>
       },
       {
         path: 'allMeals',
-        element: <AllMeals></AllMeals>
+        element: <AllMeals><AllMeals></AllMeals></AllMeals>
       },
       {
         path: 'update/:id',
-        element: <Update></Update>,
+        element: <AdminRoute><Update></Update></AdminRoute>,
         // loader: ({params})=>fetch(`http://localhost:5000/menu/${params.id}`)
       },
       {
         path: 'allReviews',
-        element: <AllReviews></AllReviews>
+        element: <AdminRoute><AllReviews></AllReviews></AdminRoute>
+      },
+      {
+        path: 'serveMeals',
+        element: <AdminRoute><ServeMeals></ServeMeals></AdminRoute>
       }
     ],
   },

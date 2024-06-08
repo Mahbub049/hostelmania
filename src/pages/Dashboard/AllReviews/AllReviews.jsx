@@ -41,8 +41,6 @@ const AllReviews = () => {
       }
     });
   };
-  const handleServe = () => {};
-  console.log(reviews);
   return (
     <div>
       <SectionTitle
@@ -82,9 +80,9 @@ const AllReviews = () => {
                     <td>
                       <Link to={`/meal/${item.id}`}
                         onClick={() => handleServe(item._id)}
-                        className="btn btn-ghost btn-lg"
+                        className="btn bg-blue-500 btn-ghost text-[12px] text-white"
                       >
-                        <GiChefToque className="text-blue-600 text-sm"></GiChefToque>
+                        <GiChefToque className="text-white"></GiChefToque> View Meal
                       </Link>
                     </td>
                   </tr>
