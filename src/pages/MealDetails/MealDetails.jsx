@@ -24,6 +24,14 @@ const MealDetails = () => {
     formState: { errors },
   } = useForm();
 
+  const { data: users = [] } = useQuery({
+    queryKey: ["users", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(`/users/${user?.email}`);
+      return data;
+    },
+  });
+
   const {
     data: menu = [],
     isLoading,
@@ -55,19 +63,19 @@ const MealDetails = () => {
       foodname: foodname,
       likes: like,
       review_count: reviews,
-      review: data.review
-    }
+      review: data.review,
+    };
     const reviewRes = await axiosPublic.post("/review", review);
-      if (reviewRes.data.insertedId) {
-        reset();
-        refetch();
-        Swal.fire({
-          title: "Success!",
-          text: "Successfully Added",
-          icon: "success",
-          confirmButtonText: "Okay",
-        });
-      }
+    if (reviewRes.data.insertedId) {
+      reset();
+      refetch();
+      Swal.fire({
+        title: "Success!",
+        text: "Successfully Added",
+        icon: "success",
+        confirmButtonText: "Okay",
+      });
+    }
   };
 
   const incrementLike = async (id) => {
@@ -78,6 +86,35 @@ const MealDetails = () => {
         refetch();
       }
     });
+  };
+
+  const handleMealRequest = async (item) => {
+    if (users.badge === "bronze") {
+      Swal.fire({
+        title: "Error!",
+        text: "Please Upgrade to any package!",
+        icon: "error",
+        confirmButtonText: "Okay",
+      });
+    } else {
+      const requestedMeal = {
+        name: user.displayName,
+        email: user.email,
+        likes: item.like,
+        reviews: item.reviews,
+        foodname: item.foodname,
+        status: "pending",
+      };
+      const mealReq = await axiosPublic.post(`/mealrequest`, requestedMeal);
+      if (mealReq.data.insertedId) {
+        Swal.fire({
+          title: "Success!",
+          text: "Successfully Requested",
+          icon: "success",
+          confirmButtonText: "Okay",
+        });
+      }
+    }
   };
 
   return (
@@ -129,7 +166,6 @@ const MealDetails = () => {
             {user ? (
               <div className="mt-3 flex gap-2">
                 <button
-                  id="likeBtn"
                   onClick={() => {
                     incrementLike(_id);
                   }}
@@ -137,7 +173,10 @@ const MealDetails = () => {
                 >
                   <BiSolidLike></BiSolidLike>Like
                 </button>
-                <button className="btn flex-1 bg-green-600 text-white">
+                <button
+                  onClick={() => handleMealRequest(menu)}
+                  className="btn flex-1 bg-green-600 text-white"
+                >
                   <GiMeal></GiMeal>Meal Request
                 </button>
               </div>
