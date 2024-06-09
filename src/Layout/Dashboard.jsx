@@ -70,7 +70,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/serveMeals">
+                <NavLink to="/dashboard/upcomingMeals">
                   <GiMeal></GiMeal>
                   Upcoming Meals
                 </NavLink>

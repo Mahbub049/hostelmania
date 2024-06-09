@@ -17,6 +17,8 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { IoTimeSharp } from "react-icons/io5";
 import useAxiosSecure from "./../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { rating } from "@material-tailwind/react";
+import { FcRating } from "react-icons/fc";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -63,8 +65,9 @@ const AddItems = () => {
         ingredients: data.ingredients,
         description: data.description,
         time: data.time,
-        like: data.like,
-        reviews: data.reviews,
+        like: parseInt(data.like),
+        reviews: parseInt(data.reviews),
+        rating: parseInt(data.rating),
       };
       const menuRes = await axiosSecure.post("/menu", menuItem);
       if (menuRes.data.insertedId) {
@@ -166,25 +169,6 @@ const AddItems = () => {
                 )}
               </label>
             </div>
-            {/* <div className="flex-1">
-              <div className="label">
-                <span className="label-text font-semibold text-[#5271FF]">
-                  Food Origin
-                </span>
-              </div>
-              <label className="input input-bordered border-[#5c7aff] flex items-center gap-2">
-                <IoMdGlobe className="text-[#5c7aff]"></IoMdGlobe>
-                <input
-                  {...register("origin", { required: true })}
-                  type="text"
-                  className="grow"
-                  placeholder="Food Origin"
-                />
-                {errors.origin && (
-                  <span className="text-red-500">This field is required</span>
-                )}
-              </label>
-            </div> */}
             <div className="flex-1">
               <div className="label">
                 <span className="label-text font-semibold text-[#5271FF]">
@@ -335,25 +319,47 @@ const AddItems = () => {
               </label>
             </div>
           </div>
-          <div className="mb-8">
-            <div className="label">
-              <span className="label-text font-semibold text-[#5271FF]">
-                Reviews
-              </span>
+          <div className="flex flex-col md:flex-row lg:flex-row gap-2 lg:gap-4 mb-3">
+            <div className="flex-1">
+              <div className="label">
+                <span className="label-text font-semibold text-[#5271FF]">
+                  Reviews
+                </span>
+              </div>
+              <label className="input input-bordered border-[#5c7aff] flex items-center gap-2">
+                <MdReviews className="text-[#5c7aff]" />
+                <input
+                  {...register("reviews", { required: true })}
+                  type="text"
+                  className="grow"
+                  placeholder="Reviews"
+                />
+                {errors.reviews && (
+                  <span className="text-red-500">This field is required</span>
+                )}
+              </label>
             </div>
-            <label className="input input-bordered border-[#5c7aff] flex items-center gap-2">
-              <MdReviews className="text-[#5c7aff]" />
-              <input
-                {...register("reviews", { required: true })}
-                type="text"
-                className="grow"
-                placeholder="Reviews"
-              />
-              {errors.reviews && (
-                <span className="text-red-500">This field is required</span>
-              )}
-            </label>
+            <div className="flex-1">
+              <div className="label">
+                <span className="label-text font-semibold text-[#5271FF]">
+                  Rating
+                </span>
+              </div>
+              <label className="input input-bordered border-[#5c7aff] flex items-center gap-2">
+                <FcRating className="text-[#5c7aff]"></FcRating>
+                <input
+                  {...register("rating", { required: true })}
+                  type="text"
+                  className="grow"
+                  placeholder="Rating"
+                />
+                {errors.rating && (
+                  <span className="text-red-500">This field is required</span>
+                )}
+              </label>
+            </div>
           </div>
+          <div className="mb-8"></div>
           <button className="btn btn-wide w-full text-white font-semibold text-xl bg-[#5c7aff]">
             Add
           </button>
