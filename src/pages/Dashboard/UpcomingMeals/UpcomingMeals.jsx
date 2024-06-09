@@ -6,6 +6,7 @@ import {
   MdDriveFileRenameOutline,
   MdFastfood,
   MdOutlineDescription,
+  MdPublish,
   MdReviews,
 } from "react-icons/md";
 import { BiCategoryAlt, BiSolidLike } from "react-icons/bi";
@@ -14,6 +15,8 @@ import { SiCashapp } from "react-icons/si";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import { FaEye } from "react-icons/fa";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -28,6 +31,14 @@ const UpcomingMeals = () => {
   } = useForm();
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
+
+  const { data: upcomingMeals = [], refetch } = useQuery({
+    queryKey: ["upcomingMeals"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/upcomingMeals");
+      return res.data;
+    },
+  });
 
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
@@ -54,6 +65,7 @@ const UpcomingMeals = () => {
       const menuRes = await axiosSecure.post("/upcomingMeals", menuItem);
       if (menuRes.data.insertedId) {
         reset();
+        refetch();
         Swal.fire({
           title: "Success!",
           text: "Successfully Added",
@@ -61,6 +73,37 @@ const UpcomingMeals = () => {
           confirmButtonText: "Okay",
         });
       }
+    }
+  };
+
+  const handlePublish = async (item) => {
+    const menuItem = {
+      name: item.name,
+      email: item.email,
+      foodname: item.foodname,
+      category: item.category,
+      price: item.price,
+      image: item.image,
+      ingredients: item.ingredients,
+      description: item.description,
+      time: item.time,
+      like: item.like,
+      reviews: item.reviews,
+      rating: item.rating,
+    };
+    const menuRes = await axiosSecure.post("/menu", menuItem);
+    if (menuRes.data.insertedId) {
+      axiosSecure.delete(`/upcomingMeals/${item._id}`).then((res) => {
+        if (res.data.deletedCount > 0) {
+          refetch();
+          Swal.fire({
+            title: "Success!",
+            text: "Successfully Added",
+            icon: "success",
+            confirmButtonText: "Okay",
+          });
+        }
+      });
     }
   };
 
@@ -396,12 +439,51 @@ const UpcomingMeals = () => {
                 </div>
               </div>
               <div className="mb-8"></div>
-              <button className="btn btn-wide w-full text-white font-semibold text-xl bg-[#5c7aff]">
-                Add
+              <button className="btn w-full text-white font-semibold border-0 bg-[#4451e8]">
+                Add Upcoming Meal
               </button>
             </form>
           </div>
         </dialog>
+      </div>
+      <div>
+        <div className="mt-12 mx-12">
+          <div className="overflow-x-auto">
+            <table className="table table-zebra w-full">
+              {/* head */}
+              <thead className="text-center text-blue-400">
+                <tr className="">
+                  <th></th>
+                  <th>Title</th>
+                  <th>Likes</th>
+                  <th>Reviews</th>
+                  <th>Distributor Name</th>
+                  <th>Publish Meal</th>
+                </tr>
+              </thead>
+              <tbody className="text-center">
+                {upcomingMeals.map((item, index) => (
+                  <tr key={item._id}>
+                    <th>{index + 1}</th>
+                    <td>{item.foodname}</td>
+                    <td>{item.like}</td>
+                    <td>{item.reviews}</td>
+                    <td>{item.name}</td>
+                    <td>
+                      <button
+                        onClick={() => handlePublish(item)}
+                        className="btn btn-ghost bg-blue-400 text-white"
+                      >
+                        <MdPublish className=""></MdPublish>
+                        <span className="text-sm">Publish</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );
