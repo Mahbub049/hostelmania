@@ -19,6 +19,7 @@ import UserRequests from "../pages/Dashboard/UserRequests/UserRequests";
 import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
 import Meals from "../pages/Meals/Meals";
 import UpcomingMeals from "../pages/Dashboard/UpcomingMeals/UpcomingMeals";
+import UpcomingMealsPage from "../pages/UpcomingMealsPage/UpcomingMealsPage";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/meals",
         element: <Meals></Meals>
+      },
+      {
+        path: "upcomingMeals",
+        element: <UpcomingMealsPage></UpcomingMealsPage>
       }
     ],
   },

@@ -44,9 +44,9 @@ const userLists =
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to={'/'} className="flex items-center">
+        <NavLink to={'/'} className="flex items-center">
           Home
-        </Link>
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -54,9 +54,9 @@ const userLists =
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link to={'/meals'} className="flex items-center">
+        <NavLink to={'/meals'} className="flex items-center">
           Meals
-        </Link>
+        </NavLink>
       </Typography>
       <Typography
         as="li"
@@ -64,9 +64,9 @@ const userLists =
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <NavLink to={'/upcomingMeals'} className="flex items-center">
           Upcoming Meals
-        </a>
+        </NavLink>
       </Typography>
       <IconButton variant="text" color="black">
         <BellIcon className="h-4 w-4" />
