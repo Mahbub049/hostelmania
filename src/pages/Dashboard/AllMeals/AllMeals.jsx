@@ -90,12 +90,11 @@ const AllMeals = () => {
                       </button>
                     </td>
                     <td>
-                      <button
-                        onClick={() => handleDeleteUser(user)}
+                      <Link to={`/meal/${item._id}`}
                         className="btn btn-ghost btn-lg"
                       >
                         <FaEye className="text-blue-600 text-sm"></FaEye>
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}

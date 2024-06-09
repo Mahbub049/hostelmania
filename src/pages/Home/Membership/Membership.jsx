@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 function CheckIcon() {
   return (
@@ -29,11 +30,7 @@ function CheckIcon() {
 const Membership = () => {
   return (
     <div className="flex lg:flex-row flex-col my-24 gap-6">
-      <Card
-        color="gray"
-        variant="gradient"
-        className="w-full p-8"
-      >
+      <Card color="gray" variant="gradient" className="w-full p-8">
         <CardHeader
           floated={false}
           shadow={false}
@@ -52,7 +49,7 @@ const Membership = () => {
             color="white"
             className="mt-6 flex justify-center gap-1 text-7xl font-normal"
           >
-            <span className="mt-2 text-4xl">$</span>29{" "}
+            <span className="mt-2 text-4xl">$</span>5{" "}
             <span className="self-end text-4xl">/mo</span>
           </Typography>
         </CardHeader>
@@ -97,22 +94,20 @@ const Membership = () => {
           </ul>
         </CardBody>
         <CardFooter className="mt-12 p-0">
-          <Button
-            size="lg"
-            color="white"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-            ripple={false}
-            fullWidth={true}
-          >
-            Buy Now
-          </Button>
+          <Link to={"/checkout/silver"}>
+            <Button
+              size="lg"
+              color="white"
+              className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
+              ripple={false}
+              fullWidth={true}
+            >
+              Buy Now
+            </Button>
+          </Link>
         </CardFooter>
       </Card>
-      <Card
-        color=""
-        variant="gradient"
-        className="w-full bg-[#B59410] p-8"
-      >
+      <Card color="" variant="gradient" className="w-full bg-[#B59410] p-8">
         <CardHeader
           floated={false}
           shadow={false}
@@ -131,7 +126,7 @@ const Membership = () => {
             color="white"
             className="mt-6 flex justify-center gap-1 text-7xl font-normal"
           >
-            <span className="mt-2 text-4xl">$</span>29{" "}
+            <span className="mt-2 text-4xl">$</span>10{" "}
             <span className="self-end text-4xl">/mo</span>
           </Typography>
         </CardHeader>
@@ -176,22 +171,20 @@ const Membership = () => {
           </ul>
         </CardBody>
         <CardFooter className="mt-12 p-0">
-          <Button
-            size="lg"
-            color="white"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-            ripple={false}
-            fullWidth={true}
-          >
-            Buy Now
-          </Button>
+          <Link to={"/checkout/gold"}>
+            <Button
+              size="lg"
+              color="white"
+              className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
+              ripple={false}
+              fullWidth={true}
+            >
+              Buy Now
+            </Button>
+          </Link>
         </CardFooter>
       </Card>
-      <Card
-        color=""
-        variant="gradient"
-        className="w-full bg-[#1d74DE] p-8"
-      >
+      <Card color="" variant="gradient" className="w-full bg-[#1d74DE] p-8">
         <CardHeader
           floated={false}
           shadow={false}
@@ -210,7 +203,7 @@ const Membership = () => {
             color="white"
             className="mt-6 flex justify-center gap-1 text-7xl font-normal"
           >
-            <span className="mt-2 text-4xl">$</span>29{" "}
+            <span className="mt-2 text-4xl">$</span>15{" "}
             <span className="self-end text-4xl">/mo</span>
           </Typography>
         </CardHeader>
@@ -255,15 +248,17 @@ const Membership = () => {
           </ul>
         </CardBody>
         <CardFooter className="mt-12 p-0">
-          <Button
-            size="lg"
-            color="white"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
-            ripple={false}
-            fullWidth={true}
-          >
-            Buy Now
-          </Button>
+          <Link to={"/checkout/platinum"}>
+            <Button
+              size="lg"
+              color="white"
+              className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
+              ripple={false}
+              fullWidth={true}
+            >
+              Buy Now
+            </Button>
+          </Link>
         </CardFooter>
       </Card>
     </div>

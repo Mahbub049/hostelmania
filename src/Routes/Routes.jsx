@@ -20,6 +20,7 @@ import MyReviews from "../pages/Dashboard/MyReviews/MyReviews";
 import Meals from "../pages/Meals/Meals";
 import UpcomingMeals from "../pages/Dashboard/UpcomingMeals/UpcomingMeals";
 import UpcomingMealsPage from "../pages/UpcomingMealsPage/UpcomingMealsPage";
+import CheckOut from "../pages/CheckOut/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "upcomingMeals",
         element: <UpcomingMealsPage></UpcomingMealsPage>
+      },
+      {
+        path: "checkout/:name",
+        element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>
       }
     ],
   },
