@@ -44,9 +44,9 @@ const userLists =
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <Link to={'/'} className="flex items-center">
           Home
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -54,9 +54,9 @@ const userLists =
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
+        <Link to={'/meals'} className="flex items-center">
           Meals
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"

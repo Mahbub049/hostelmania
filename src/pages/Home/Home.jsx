@@ -6,7 +6,7 @@ import Menu from "./Menu/Menu";
 
 const Home = () => {
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto mons">
             <StickyNavbar></StickyNavbar>
             <Banner></Banner>
             <Menu></Menu>

@@ -6,6 +6,7 @@ import useMenu from "../../../hooks/useMenu";
 import "./Menu.css";
 import FoodCard from "../../../components/FoodCard/FoodCard";
 import SectionTitle from "./../../../components/SectionTitle/SectionTitle";
+import HomeHeading from "../../../components/HomeHeading/HomeHeading";
 
 const Menu = () => {
   const categories = ["breakfast", "lunch", "dinner"];
@@ -23,10 +24,10 @@ const Menu = () => {
   return (
     <div>
       <div className="mb-12">
-        <SectionTitle
+        <HomeHeading
           heading="Meals by Category"
-          subheading="Watchout latest dishes by the chefs by category"
-        ></SectionTitle>
+          subheading="Explore our diverse meal categories, featuring delicious options for breakfast, lunch, and dinner. Enjoy flavorful dishes crafted to satisfy every taste and dietary preference."
+        ></HomeHeading>
       </div>
       <Tabs>
         <TabList className="flex justify-center mb-8">

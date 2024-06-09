@@ -60,6 +60,7 @@ const MealDetails = () => {
   const onSubmit = async (data) => {
     const review = {
       id: _id,
+      email: user.email,
       foodname: foodname,
       likes: like,
       review_count: reviews,

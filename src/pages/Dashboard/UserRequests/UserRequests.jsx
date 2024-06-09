@@ -67,7 +67,7 @@ const UserRequests = () => {
                   <tr key={item._id}>
                     <th>{index + 1}</th>
                     <td>{item.foodname}</td>
-                    <td>{item.like}</td>
+                    <td>{item.likes}</td>
                     <td>{item.reviews}</td>
                     <td>
                       {(item.status === "pending" && (
