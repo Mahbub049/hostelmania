@@ -21,6 +21,7 @@ import Meals from "../pages/Meals/Meals";
 import UpcomingMeals from "../pages/Dashboard/UpcomingMeals/UpcomingMeals";
 import UpcomingMealsPage from "../pages/UpcomingMealsPage/UpcomingMealsPage";
 import CheckOut from "../pages/CheckOut/CheckOut";
+import Payments from "../pages/Dashboard/Payments/Payments";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
       {
         path: 'myreviews',
         element: <MyReviews></MyReviews>
+      },
+      {
+        path: 'payments',
+        element: <Payments></Payments>
       },
       {
         path: 'addItems',
