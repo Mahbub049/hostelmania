@@ -2,17 +2,40 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
-const CheckOutForm = () => {
+const CheckOutForm = ({mealPackage}) => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [transactionId, setTransactionId] = useState('');
+  const [transactionId, setTransactionId] = useState("");
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
 
-  const totalPrice = 10;
+  const { data: users = [] } = useQuery({
+    queryKey: ["users", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(`/users/${user?.email}`);
+      return data;
+    },
+  });
+
+  let totalPrice;
+
+  if(mealPackage === "gold"){
+    totalPrice = 10;
+  }
+  else if(mealPackage === "platinum"){
+    totalPrice = 15;
+  }
+  else{
+    totalPrice = 5;
+  }
+
+
 
   useEffect(() => {
     if (totalPrice > 0) {
@@ -64,13 +87,26 @@ const CheckOutForm = () => {
 
     if (confirmError) {
       console.log("confirm error");
-    }
-    else {
-        console.log('payment intent', paymentIntent)
-        if (paymentIntent.status === 'succeeded') {
-            console.log('transaction id', paymentIntent.id);
-            setTransactionId(paymentIntent.id);
-        }
+    } else {
+      console.log("payment intent", paymentIntent);
+      if (paymentIntent.status === "succeeded") {
+        console.log("transaction id", paymentIntent.id);
+        setTransactionId(paymentIntent.id);
+
+        const payment = {
+          email: user.email,
+          price: totalPrice,
+          transactionId: paymentIntent.id,
+          date: new Date(), // utc date convert. use moment js to
+          userId: users._id,
+          packageName: mealPackage,
+          status: "Purchased",
+        };
+        console.log(payment)
+
+        const res = await axiosSecure.post("/payments", payment);
+        console.log("payment saved", res.data);
+      }
     }
   };
   return (
@@ -99,7 +135,9 @@ const CheckOutForm = () => {
         Pay
       </button>
       <p className="text-red-600">{error}</p>
-      {transactionId && <p className="text-green-600"> Your transaction id: {transactionId}</p>}
+      {transactionId && (
+        <p className="text-green-600"> Your transaction id: {transactionId}</p>
+      )}
     </form>
   );
 };
