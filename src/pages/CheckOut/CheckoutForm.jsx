@@ -4,8 +4,10 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-const CheckOutForm = ({mealPackage}) => {
+const CheckOutForm = ({ mealPackage }) => {
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -14,8 +16,9 @@ const CheckOutForm = ({mealPackage}) => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users", user?.email],
     queryFn: async () => {
       const { data } = await axiosPublic.get(`/users/${user?.email}`);
@@ -25,17 +28,13 @@ const CheckOutForm = ({mealPackage}) => {
 
   let totalPrice;
 
-  if(mealPackage === "gold"){
+  if (mealPackage === "gold") {
     totalPrice = 10;
-  }
-  else if(mealPackage === "platinum"){
+  } else if (mealPackage === "platinum") {
     totalPrice = 15;
-  }
-  else{
+  } else {
     totalPrice = 5;
   }
-
-
 
   useEffect(() => {
     if (totalPrice > 0) {
@@ -102,10 +101,19 @@ const CheckOutForm = ({mealPackage}) => {
           packageName: mealPackage,
           status: "Purchased",
         };
-        console.log(payment)
+        console.log(payment);
 
         const res = await axiosSecure.post("/payments", payment);
         console.log("payment saved", res.data);
+        refetch();
+        if (res.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            title: "Puchased!",
+            text: "You have successfully Purchased the Package!",
+            icon: "success",
+          });
+          navigate("/");
+        }
       }
     }
   };
