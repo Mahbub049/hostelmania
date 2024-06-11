@@ -77,33 +77,42 @@ const UpcomingMeals = () => {
   };
 
   const handlePublish = async (item) => {
-    const menuItem = {
-      name: item.name,
-      email: item.email,
-      foodname: item.foodname,
-      category: item.category,
-      price: item.price,
-      image: item.image,
-      ingredients: item.ingredients,
-      description: item.description,
-      time: item.time,
-      like: item.like,
-      reviews: item.reviews,
-      rating: item.rating,
-    };
-    const menuRes = await axiosSecure.post("/menu", menuItem);
-    if (menuRes.data.insertedId) {
-      axiosSecure.delete(`/upcomingMeals/${item._id}`).then((res) => {
-        if (res.data.deletedCount > 0) {
-          refetch();
-          Swal.fire({
-            title: "Success!",
-            text: "Successfully Added",
-            icon: "success",
-            confirmButtonText: "Okay",
-          });
-        }
+    if (item.like < 10) {
+      Swal.fire({
+        title: "Error!",
+        text: "Minimum 10 Likes required",
+        icon: "error",
+        confirmButtonText: "Okay",
       });
+    } else {
+      const menuItem = {
+        name: item.name,
+        email: item.email,
+        foodname: item.foodname,
+        category: item.category,
+        price: item.price,
+        image: item.image,
+        ingredients: item.ingredients,
+        description: item.description,
+        time: item.time,
+        like: item.like,
+        reviews: item.reviews,
+        rating: item.rating,
+      };
+      const menuRes = await axiosSecure.post("/menu", menuItem);
+      if (menuRes.data.insertedId) {
+        axiosSecure.delete(`/upcomingMeals/${item._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Success!",
+              text: "Successfully Added",
+              icon: "success",
+              confirmButtonText: "Okay",
+            });
+          }
+        });
+      }
     }
   };
 
