@@ -4,29 +4,36 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { Chip } from "@material-tailwind/react";
 import { GiMeal } from "react-icons/gi";
 import Swal from "sweetalert2";
+import { useState } from "react";
 
 const ServeMeals = () => {
   const axiosSecure = useAxiosSecure();
+  const [searchText, setSearchText] = useState("");
+  const [search, setSearch] = useState("");
   const { data: mealrequest = [], refetch } = useQuery({
     queryKey: ["mealrequest"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/mealrequest");
+      const res = await axiosSecure.get(`/mealrequest?search=${searchText}`);
       return res.data;
     },
   });
   const handleServe = (id) => {
-      axiosSecure.patch(`/mealrequest/${id}`)
-      .then(res =>{
-          console.log(res.data)
-          if(res.data.modifiedCount > 0){
-              refetch();
-              Swal.fire({
-                title: "Served!",
-                text: "Your food has been delivered.",
-                icon: "success",
-              });
-          }
-      })
+    axiosSecure.patch(`/mealrequest/${id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          title: "Served!",
+          text: "Your food has been delivered.",
+          icon: "success",
+        });
+      }
+    });
+  };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearch(searchText);
+    refetch();
   };
   return (
     <div>
@@ -34,6 +41,27 @@ const ServeMeals = () => {
         heading="Serve Meals"
         subheading="Serve the requested meals by the users"
       ></SectionTitle>
+      <div className="flex flex-col items-center mt-6">
+        <p className="mb-2">Search by Username or Email</p>
+        <form onSubmit={handleSearch}>
+          <div className="flex p-1 overflow-hidden border rounded-lg">
+            <div className="join">
+              <input
+                onChange={(e) => setSearchText(e.target.value)}
+                value={searchText}
+                className="input input-bordered join-item"
+                type="text"
+                name="search"
+                placeholder="Enter UserName or Email"
+                aria-label="Enter UserName"
+              />
+              <button className="btn text-white bg-blue-400 join-item">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
       <div>
         <div className="mt-12 mx-12">
           <div className="overflow-x-auto">
@@ -57,11 +85,20 @@ const ServeMeals = () => {
                     <td>{item.name}</td>
                     <td>{item.email}</td>
                     <td>
-                      {
-                        item.status === "pending" && <Chip className="uppercase bg-red-300 w-[150px] mx-auto" value={item.status} /> || 
-                        item.status === "delivered" && <Chip color="green" className="uppercase w-[150px] mx-auto" value={ item.status}/>
-                      }
-                      </td>
+                      {(item.status === "pending" && (
+                        <Chip
+                          className="uppercase bg-red-300 w-[150px] mx-auto"
+                          value={item.status}
+                        />
+                      )) ||
+                        (item.status === "delivered" && (
+                          <Chip
+                            color="green"
+                            className="uppercase w-[150px] mx-auto"
+                            value={item.status}
+                          />
+                        ))}
+                    </td>
                     <td>
                       <button
                         onClick={() => handleServe(item._id)}

@@ -44,9 +44,10 @@ const Users = () => {
         heading="Manage Users"
         subheading="Manage all the users, see their subscription, make admin and details"
       ></SectionTitle>
-      <div>
+      <div className="flex flex-col items-center mt-6">
+        <p className="mb-2">Search by Username or Email</p>
         <form onSubmit={handleSearch}>
-          <div className="flex mx-auto mt-6 p-1 overflow-hidden border rounded-lg  w-[400px]">
+          <div className="flex p-1 overflow-hidden border rounded-lg">
             <div className="join">
               <input
                 onChange={(e) => setSearchText(e.target.value)}
@@ -54,7 +55,7 @@ const Users = () => {
                 className="input input-bordered join-item"
                 type="text"
                 name="search"
-                placeholder="Enter UserName"
+                placeholder="Enter UserName or Email"
                 aria-label="Enter UserName"
               />
               <button className="btn text-white bg-blue-400 join-item">
