@@ -89,7 +89,7 @@ const Meals = () => {
                 }}
                 value={filter}
                 name="category"
-                id="category"
+                id="category"gi
                 className="border w-[300px] my-auto h-[50px] p-4 rounded-lg"
               >
                 <option value="">Filter By Category</option>
