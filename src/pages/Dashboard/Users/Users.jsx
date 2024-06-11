@@ -10,6 +10,7 @@ const Users = () => {
   const [searchText, setSearchText] = useState("");
   const [search, setSearch] = useState("");
   const axiosSecure = useAxiosSecure();
+  const regex = /^([a-zA-Z\s.,'-]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
   console.log(search)
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -35,7 +36,16 @@ const Users = () => {
   };
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearch(searchText);
+    if(regex.test(searchText)){
+      setSearch(searchText);
+    }
+    else{
+      Swal.fire({
+        title: "Wrong Text!",
+        text: "Your food has been delivered.",
+        icon: "error",
+      });
+    }
     refetch();
   };
   return (

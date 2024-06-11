@@ -10,6 +10,7 @@ const ServeMeals = () => {
   const axiosSecure = useAxiosSecure();
   const [searchText, setSearchText] = useState("");
   const [search, setSearch] = useState("");
+  const regex = /^([a-zA-Z\s.,'-]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
   const { data: mealrequest = [], refetch } = useQuery({
     queryKey: ["mealrequest"],
     queryFn: async () => {
@@ -32,7 +33,17 @@ const ServeMeals = () => {
   };
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearch(searchText);
+    if(regex.test(searchText)){
+      setSearch(searchText);
+    }
+    else{
+      Swal.fire({
+        title: "Wrong Text!",
+        text: "Your food has been delivered.",
+        icon: "error",
+      });
+    }
+    
     refetch();
   };
   return (

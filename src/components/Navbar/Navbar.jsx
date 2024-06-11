@@ -10,6 +10,7 @@ import {
 } from "@material-tailwind/react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { FaRegUserCircle } from "react-icons/fa";
 
 
 export function StickyNavbar() {
@@ -102,7 +103,8 @@ const userLists =
               <Button
                 variant="gradient"
                 size="sm"
-                className="hidden lg:inline-block"
+                color="blue"
+                className="hidden bg-blue-500 lg:inline-block"
               >
                 <span>Join Us</span>
               </Button>
@@ -150,7 +152,7 @@ const userLists =
       <MobileNav open={openNav}>
         {navList}
         <div className="flex items-center gap-x-1">
-          <Button fullWidth variant="gradient" size="sm" className="">
+          <Button fullWidth variant="gradient" size="sm" color="blue" className="bg-blue-500">
             <span>Join Us</span>
           </Button>
         </div>

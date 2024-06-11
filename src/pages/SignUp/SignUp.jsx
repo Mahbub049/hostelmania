@@ -21,7 +21,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
-  const {createUser, updateUserInfo, setUser, user, loading} = useContext(AuthContext);
+  const {registerUser, updateUserInfo, setUser, user, loading} = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
@@ -38,6 +38,7 @@ const SignUp = () => {
         "content-type": "multipart/form-data",
       },
     });
+    console.log(res)
     if (res.data.success) {
       const email = data.email;
       const password = data.password;
@@ -49,7 +50,7 @@ const SignUp = () => {
         image,
         badge: data.badge
       }
-      createUser(email, password)
+      registerUser(email, password)
       .then(()=>{
           updateUserInfo(name, image)
           .then(()=>{
@@ -83,11 +84,21 @@ const SignUp = () => {
               //   })
           })
           .catch(()=>{   
-              toast.error("Something went wrong!");
+            Swal.fire({
+              title: 'Error!',
+              text: 'Something is wrong',
+              icon: 'error',
+              confirmButtonText: 'Okay'
+          })
           })
       })
       .catch(()=>{
-          toast.error("This email already exists!");
+        Swal.fire({
+          title: 'Error!',
+          text: 'User Already Exists',
+          icon: 'error',
+          confirmButtonText: 'Okay'
+      })
       })
 
       // const menuItem = {

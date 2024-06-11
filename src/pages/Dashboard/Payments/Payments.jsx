@@ -14,7 +14,8 @@ const Payments = () => {
       return res.data;
     },
   });
-  const payments = [payment];
+  // const payments = [payment];
+  console.log(payment);
   return (
     <div>
       <SectionTitle
@@ -27,53 +28,59 @@ const Payments = () => {
             <table className="table table-zebra w-full">
               {/* head */}
               <thead className="text-center text-blue-400">
-                <tr className="">
-                  <th></th>
-                  <th>Date</th>
-                  <th>Transaction ID</th>
-                  <th>Package Name</th>
-                  <th>Package Price</th>
-                  <th>Status</th>
-                </tr>
+                {payment.length ? (
+                  <tr className="">
+                    <th></th>
+                    <th>Date</th>
+                    <th>Transaction ID</th>
+                    <th>Package Name</th>
+                    <th>Package Price</th>
+                    <th>Status</th>
+                  </tr>
+                ) : (
+                  <p className="text-red-500 text-2xl"> NO PAYMENT IS COMPLETED!</p>
+                )}
               </thead>
               <tbody className="text-center">
-                {payments.map((item, index) => (
-                  <tr key={item._id}>
-                    <th>{index + 1}</th>
-                    <td>{item.date}</td>
-                    <td>{item.transactionId}</td>
-                    <td className="uppercase">
-                      {(item.packageName === "silver" && (
-                        <Chip
-                          className="w-[150px] mx-auto"
-                          value={item.packageName}
-                        />
-                      )) ||
-                        (item.packageName === "gold" && (
+                {payment.length
+                  ? payment.map((item, index) => (
+                      <tr key={item._id}>
+                        <th>{index + 1}</th>
+                        <td>{item.date}</td>
+                        <td>{item.transactionId}</td>
+                        <td className="uppercase">
+                          {(item.packageName === "silver" && (
+                            <Chip
+                              className="w-[150px] mx-auto"
+                              value={item.packageName}
+                            />
+                          )) ||
+                            (item.packageName === "gold" && (
+                              <Chip
+                                className="w-[150px] mx-auto"
+                                color="amber"
+                                value={item.packageName}
+                              />
+                            )) ||
+                            (item.packageName === "platinum" && (
+                              <Chip
+                                className="w-[150px] mx-auto"
+                                color="cyan"
+                                value={item.packageName}
+                              />
+                            ))}
+                        </td>
+                        <td>{item.price}</td>
+                        <td>
                           <Chip
                             className="w-[150px] mx-auto"
-                            color="amber"
-                            value={item.packageName}
+                            color="green"
+                            value={item.status}
                           />
-                        )) ||
-                        (item.packageName === "platinum" && (
-                          <Chip
-                            className="w-[150px] mx-auto"
-                            color="cyan"
-                            value={item.packageName}
-                          />
-                        ))}
-                    </td>
-                    <td>{item.price}</td>
-                    <td>
-                      <Chip
-                        className="w-[150px] mx-auto"
-                        color="green"
-                        value={item.status}
-                      />
-                    </td>
-                  </tr>
-                ))}
+                        </td>
+                      </tr>
+                    ))
+                  : <p>Subscribe to a package</p>}
               </tbody>
             </table>
           </div>

@@ -17,17 +17,16 @@ const Banner = () => {
                 color="white"
                 className="mb-4 text-3xl md:text-4xl lg:text-5xl"
               >
-                The Beauty of Nature
+                Savor the Best Meals
               </Typography>
               <Typography
                 variant="lead"
                 color="white"
                 className="mb-12 opacity-80"
               >
-                It is not so much for its beauty that the forest makes a claim
-                upon men&apos;s hearts, as for that subtle something, that
-                quality of air that emanation from old trees, that so
-                wonderfully changes and renews a weary spirit.
+                Discover our delicious and diverse meal options, meticulously
+                prepared to satisfy your cravings and provide a delightful
+                dining experience every day.
               </Typography>
               <div className="flex relative justify-center w-3/4 mx-auto gap-2">
                 <Input
@@ -63,24 +62,34 @@ const Banner = () => {
                 color="white"
                 className="mb-4 text-3xl md:text-4xl lg:text-5xl"
               >
-                The Beauty of Nature
+                Experience Exceptional Dining
               </Typography>
               <Typography
                 variant="lead"
                 color="white"
                 className="mb-12 opacity-80"
               >
-                It is not so much for its beauty that the forest makes a claim
-                upon men&apos;s hearts, as for that subtle something, that
-                quality of air that emanation from old trees, that so
-                wonderfully changes and renews a weary spirit.
+                Indulge in our carefully curated meals, featuring fresh
+                ingredients and authentic flavors. Elevate your dining
+                experience with our mouth-watering breakfast, lunch, and dinner
+                offerings.
               </Typography>
-              <div className="flex justify-center gap-2">
-                <Button size="lg" color="white">
-                  Explore
-                </Button>
-                <Button size="lg" color="white" variant="text">
-                  Gallery
+              <div className="flex relative justify-center w-3/4 mx-auto gap-2">
+                <Input
+                  type="search"
+                  color="white"
+                  label="Type here..."
+                  className="pr-20"
+                  containerProps={{
+                    className: "min-w-[288px]",
+                  }}
+                />
+                <Button
+                  size="sm"
+                  color="white"
+                  className="!absolute right-1 top-1 rounded"
+                >
+                  Search
                 </Button>
               </div>
             </div>
@@ -99,24 +108,33 @@ const Banner = () => {
                 color="white"
                 className="mb-4 text-3xl md:text-4xl lg:text-5xl"
               >
-                The Beauty of Nature
+                Taste the Difference
               </Typography>
               <Typography
                 variant="lead"
                 color="white"
                 className="mb-12 opacity-80"
               >
-                It is not so much for its beauty that the forest makes a claim
-                upon men&apos;s hearts, as for that subtle something, that
-                quality of air that emanation from old trees, that so
-                wonderfully changes and renews a weary spirit.
+                Enjoy gourmet meals at your convenience, crafted by our expert
+                chefs. From hearty breakfasts to sumptuous dinners, we cater to
+                every palate with a variety of delectable dishes.
               </Typography>
-              <div className="flex justify-center gap-2">
-                <Button size="lg" color="white">
-                  Explore
-                </Button>
-                <Button size="lg" color="white" variant="text">
-                  Gallery
+              <div className="flex relative justify-center w-3/4 mx-auto gap-2">
+                <Input
+                  type="search"
+                  color="white"
+                  label="Type here..."
+                  className="pr-20"
+                  containerProps={{
+                    className: "min-w-[288px]",
+                  }}
+                />
+                <Button
+                  size="sm"
+                  color="white"
+                  className="!absolute right-1 top-1 rounded"
+                >
+                  Search
                 </Button>
               </div>
             </div>
