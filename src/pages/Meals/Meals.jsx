@@ -12,6 +12,10 @@ import axios from "axios";
 const Meals = () => {
   const [filterText, setFilterText] = useState("");
   const [searchText, setSearchText] = useState("");
+  const [min, setMin] = useState("");
+  const [max, setMax] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
   const [menu, setMenu] = useState([]);
@@ -29,12 +33,12 @@ const Meals = () => {
   useEffect(() => {
     const getData = async () => {
       const { data } = await axiosPublic.get(
-        `/menu?filter=${filter}&search=${search}`
-      )
-      setMenu(data)
-    }
-    getData()
-  }, [filter, search])
+        `/menu?filter=${filter}&search=${search}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+      );
+      setMenu(data);
+    };
+    getData();
+  }, [filter, search, minPrice, maxPrice]);
 
   const getArticles = async ({ pageParam = 0 }) => {
     const res = await fetch(`http://localhost:5000/menu?offset=${pageParam}`);
@@ -58,7 +62,11 @@ const Meals = () => {
     setSearch(searchText);
     // refetch();
   };
-
+  const handlePriceFilter = (e) => {
+    e.preventDefault();
+    setMinPrice(min);
+    setMaxPrice(max);
+  };
   const articles = data?.pages.reduce((acc, page) => {
     refetch();
     const result = Object.values(page).slice(0, -1);
@@ -72,22 +80,26 @@ const Meals = () => {
       <div>
         <div className="bg-[linear-gradient(45deg,rgba(19,19,24,0.50),rgba(19,19,24,0.50)),url('https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80')] bg-center bg-cover py-20 text-center my-8 rounded-xl mx-3 lg:mx-0">
           <p className="text-4xl  font-bold text-[#78c9f4] mons">Menu</p>
-          <div className="flex gap-4 mt-8 justify-center">
-            <select
-              onChange={(e) => {
-                setFilter(e.target.value);
-              }}
-              value={filter}
-              name="category"
-              id="category"
-              className="border w-[300px] my-auto h-[50px] p-4 rounded-lg"
-            >
-              <option value="">Filter By Category</option>
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
-            </select>
+          <div className="flex mt-8 justify-between w-9/12 mx-auto">
+            <div className="flex flex-col items-start">
+              <p className="text-white">Filter by Category</p>
+              <select
+                onChange={(e) => {
+                  setFilter(e.target.value);
+                }}
+                value={filter}
+                name="category"
+                id="category"
+                className="border w-[300px] my-auto h-[50px] p-4 rounded-lg"
+              >
+                <option value="">Filter By Category</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+              </select>
+            </div>
             <div className="flex flex-col items-center">
+              <p className="text-white flex justify-start w-full">Search</p>
               <form onSubmit={handleSearch}>
                 <div className="flex p-1 overflow-hidden rounded-lg">
                   <div className="join">
@@ -102,6 +114,36 @@ const Meals = () => {
                     />
                     <button className="btn text-white bg-blue-400 join-item">
                       Search
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div className="flex flex-col items-center">
+              <p className="text-white flex justify-start w-full">Filter by Price</p>
+              <form onSubmit={handlePriceFilter}>
+                <div className="flex p-1 overflow-hidden rounded-lg">
+                  <div className="join">
+                    <input
+                      onChange={(e) => setMin(e.target.value)}
+                      value={min}
+                      className="input w-[120px] mr-3 input-bordered"
+                      type="text"
+                      name="search"
+                      placeholder="Min Price"
+                      aria-label="Enter UserName"
+                    />
+                    <input
+                      onChange={(e) => setMax(e.target.value)}
+                      value={max}
+                      className="input w-[120px] input-bordered"
+                      type="text"
+                      name="search"
+                      placeholder="Max Price"
+                      aria-label="Enter UserName"
+                    />
+                    <button className="btn text-white bg-blue-400 ml-3">
+                      Filter
                     </button>
                   </div>
                 </div>
