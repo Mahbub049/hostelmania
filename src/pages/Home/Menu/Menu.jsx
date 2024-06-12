@@ -14,12 +14,10 @@ const Menu = () => {
   // const initialIndex = categories.indexOf(category);
   const [tabIndex, setTabIndex] = useState("breakfast");
   const [menu] = useMenu();
-  console.log(menu);
 
   const breakfast = menu.filter((item) => item.category === "breakfast");
   const lunch = menu.filter((item) => item.category === "lunch");
   const dinner = menu.filter((item) => item.category === "dinner");
-  console.log(breakfast);
 
   return (
     <div>

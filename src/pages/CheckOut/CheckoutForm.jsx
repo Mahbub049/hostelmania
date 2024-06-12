@@ -41,7 +41,6 @@ const CheckOutForm = ({ mealPackage }) => {
       axiosSecure
         .post("/create-payment-intent", { price: totalPrice })
         .then((res) => {
-          console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -66,10 +65,8 @@ const CheckOutForm = ({ mealPackage }) => {
     });
 
     if (error) {
-      console.log("payment error", error);
       setError(error.message);
     } else {
-      console.log("payment method", paymentMethod);
       setError("");
     }
 
@@ -89,7 +86,6 @@ const CheckOutForm = ({ mealPackage }) => {
     } else {
       console.log("payment intent", paymentIntent);
       if (paymentIntent.status === "succeeded") {
-        console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
 
         const payment = {
@@ -101,10 +97,8 @@ const CheckOutForm = ({ mealPackage }) => {
           packageName: mealPackage,
           status: "Purchased",
         };
-        console.log(payment);
 
         const res = await axiosSecure.post("/payments", payment);
-        console.log("payment saved", res.data);
         refetch();
         if (res.data?.paymentResult?.insertedId) {
           Swal.fire({

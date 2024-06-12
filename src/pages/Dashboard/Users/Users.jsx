@@ -11,7 +11,6 @@ const Users = () => {
   const [search, setSearch] = useState("");
   const axiosSecure = useAxiosSecure();
   const regex = /^([a-zA-Z\s.,'-]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-  console.log(search)
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -21,7 +20,6 @@ const Users = () => {
   });
   const handleMakeAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
         Swal.fire({

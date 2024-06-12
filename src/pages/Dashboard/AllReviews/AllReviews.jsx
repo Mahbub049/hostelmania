@@ -56,8 +56,8 @@ const AllReviews = () => {
                 <tr className="">
                   <th></th>
                   <th>Title</th>
-                  <th>User Name</th>
-                  <th>User Email</th>
+                  <th>Likes</th>
+                  <th>Reviews</th>
                   <th>Delete</th>
                   <th>View Meal</th>
                 </tr>

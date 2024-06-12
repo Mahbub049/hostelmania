@@ -41,7 +41,7 @@ const Meals = () => {
   }, [filter, search, minPrice, maxPrice]);
 
   const getArticles = async ({ pageParam = 0 }) => {
-    const res = await fetch(`http://localhost:5000/menu?offset=${pageParam}`);
+    const res = await fetch(`https://hostelmania-server.vercel.app/menu?offset=${pageParam}`);
     const data = await res.json();
 
     return { ...data, prevOffset: pageParam };
@@ -73,7 +73,6 @@ const Meals = () => {
     return [...acc, ...result];
   }, []);
 
-  console.log(filter);
   return (
     <div className="container mx-auto">
       <StickyNavbar></StickyNavbar>

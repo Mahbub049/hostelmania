@@ -38,7 +38,7 @@ const Profile = () => {
         <div className="bg-white shadow-lg rounded-2xl w-full lg:w-3/5">
           <img
             alt="profile"
-            src="../../../../public/hostel1.jpg"
+            src="https://i.ibb.co/myDQMxb/hostel3.jpg"
             className="w-full mb-4 rounded-t-lg h-36 object-cover"
           />
           <div className="flex flex-col items-center justify-center p-4 -mt-16">

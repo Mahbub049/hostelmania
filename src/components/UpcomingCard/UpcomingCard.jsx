@@ -43,14 +43,12 @@ const UpcomingCard = ({ item }) => {
     const likeCount = axiosPublic
       .patch(`/upcomingLike/${id}`, upcomingMeal)
       .then((res) => {
-        console.log(res);
         if (res.data.modifiedCount > 0) {
           refetch();
         }
       });
   };
 
-  console.log(users.badge);
   return (
     <div>
       <Card className="w-full max-w-[26rem] shadow-lg">

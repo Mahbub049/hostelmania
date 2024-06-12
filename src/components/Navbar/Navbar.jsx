@@ -85,7 +85,7 @@ export function StickyNavbar() {
     <Navbar className="sticky top-0 z-10 h-max max-w-full rounded-none px-4 py-2 lg:px-8 lg:py-4">
       <div className="flex items-center justify-between text-blue-gray-900">
         <NavLink to={"/"}>
-          <img src="../../../public/logo.png" className="w-48" alt="" />
+          <img src="https://i.ibb.co/pjk2bxX/logo.png" className="w-48" alt="" />
         </NavLink>
         <div className="flex items-center gap-4">
           <div className="mr-4 hidden lg:block">{navList}</div>

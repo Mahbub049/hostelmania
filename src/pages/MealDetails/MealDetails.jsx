@@ -80,9 +80,7 @@ const MealDetails = () => {
   };
 
   const incrementLike = async (id) => {
-    console.log(id);
     const likeCount = axiosPublic.patch(`/like/${id}`, menu).then((res) => {
-      console.log(res.data);
       if (res.data.modifiedCount > 0) {
         refetch();
       }

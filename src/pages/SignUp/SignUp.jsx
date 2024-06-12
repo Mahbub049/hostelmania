@@ -40,7 +40,6 @@ const SignUp = () => {
         "content-type": "multipart/form-data",
       },
     });
-    console.log(res);
     if (res.data.success) {
       const email = data.email;
       const password = data.password;

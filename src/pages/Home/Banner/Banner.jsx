@@ -6,7 +6,7 @@ const Banner = () => {
       <Carousel className="rounded-xl h-[600px]">
         <div className="relative h-full w-full">
           <img
-            src="../../../../public/hostel1.jpg"
+            src="https://i.ibb.co/PwDJb0L/hostel1.jpg"
             alt="image 1"
             className="h-full w-full object-cover"
           />
@@ -51,7 +51,7 @@ const Banner = () => {
         </div>
         <div className="relative h-full w-full">
           <img
-            src="../../../../public/hostel2.jpg"
+            src="https://i.ibb.co/tQbqM2S/hostel2.jpg"
             alt="image 2"
             className="h-full w-full object-cover"
           />
@@ -97,7 +97,7 @@ const Banner = () => {
         </div>
         <div className="relative h-full w-full">
           <img
-            src="../../../../public/hostel3.jpg"
+            src="https://i.ibb.co/myDQMxb/hostel3.jpg"
             alt="image 3"
             className="h-full w-full object-cover"
           />
