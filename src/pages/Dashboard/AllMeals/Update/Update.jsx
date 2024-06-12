@@ -102,7 +102,7 @@ const Update = () => {
         heading="Update Meal"
         subheading="Update existing items in the menu by providing details"
       ></SectionTitle>
-      <div className="mt-8 mx-32">
+      <div className="mt-8 lg:mx-32">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="poppins mx-3 lg:mx-0"

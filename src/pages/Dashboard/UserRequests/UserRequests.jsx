@@ -48,7 +48,7 @@ const UserRequests = () => {
         subheading="Manage all the foods that you have requested, delete and see details"
       ></SectionTitle>
       <div>
-        <div className="mt-12 mx-12">
+        <div className="mt-12 lg:mx-12">
           <div className="overflow-x-auto">
             <table className="table table-zebra w-full">
               {/* head */}

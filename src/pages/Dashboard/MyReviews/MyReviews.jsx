@@ -85,11 +85,11 @@ const MyReviews = () => {
   return (
     <div>
       <SectionTitle
-        heading="All Reviews"
-        subheading="Watch All the reviews by the users to the meals"
+        heading="My Reviews"
+        subheading="Watch Your reviews by the users to the meals"
       ></SectionTitle>
       <div>
-        <div className="mt-12 mx-12">
+        <div className="mt-12 lg:mx-12">
           <div className="overflow-x-auto">
             <table className="table table-zebra w-full">
               {/* head */}

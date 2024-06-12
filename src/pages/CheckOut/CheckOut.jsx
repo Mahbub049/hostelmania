@@ -23,7 +23,7 @@ const CheckOut = () => {
   return (
     <div className="container mx-auto mons">
       <StickyNavbar></StickyNavbar>
-      <div className="w-[800px] my-12 mx-auto">
+      <div className="w-[300px] lg:w-[800px] my-12 mx-auto">
         <div>
             <p className="text-2xl font-bold text-center mb-8 text-blue-600">Package Information and Payment</p>
         </div>

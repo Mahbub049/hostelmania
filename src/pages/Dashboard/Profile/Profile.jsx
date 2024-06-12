@@ -34,11 +34,8 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="flex justify-center items-center mt-[200px]">
-        {/* <Helmet>
-          <title>Profile</title>
-        </Helmet> */}
-        <div className="bg-white shadow-lg rounded-2xl w-3/5">
+      <div className="flex justify-center items-center mt-[100px] lg:mt-[200px]">
+        <div className="bg-white shadow-lg rounded-2xl w-full lg:w-3/5">
           <img
             alt="profile"
             src="../../../../public/hostel1.jpg"
@@ -67,12 +64,12 @@ const Profile = () => {
                     {user?.displayName}
                   </span>
                 </p>
-                <p className="flex flex-col">
+                <p className="flex flex-col mt-3 lg:mt-0">
                   Email
                   <span className="font-bold text-black ">{user?.email}</span>
                 </p>
 
-                <div>
+                <div className="mt-3 lg:mt-0">
                   {isAdmin ? (
                     <div>
                       <p>Total Meals Added:</p>

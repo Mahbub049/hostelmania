@@ -121,7 +121,7 @@ const MealDetails = () => {
   return (
     <div className="container mx-auto">
       <StickyNavbar></StickyNavbar>
-      <div className="my-12">
+      <div className="my-12 mx-3 lg:mx-0">
         <figure className="relative h-96 w-full">
           <img
             className="h-full w-full rounded-xl object-cover object-center"
@@ -143,7 +143,7 @@ const MealDetails = () => {
             </div>
           </figcaption>
         </figure>
-        <div className="mt-12 flex justify-between">
+        <div className="mt-12 flex flex-col lg:flex-row justify-between">
           <div className="flex-1">
             <p className="text-lg font-bold mb-2">
               Description: <span className="font-normal">{description}</span>
@@ -153,7 +153,7 @@ const MealDetails = () => {
             </p>
           </div>
           <div className="flex-1">
-            <div className="flex justify-between">
+            <div className="flex flex-col lg:flex-row mt-4 lg:mt-0 space-y-3 lg:space-y-0 justify-between">
               <p className="text-lg font-bold flex items-center gap-2">
                 <FcAlarmClock></FcAlarmClock>Post Time: {time}
               </p>

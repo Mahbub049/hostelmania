@@ -50,7 +50,7 @@ const AllMeals = () => {
         subheading="Manage all the foods, see details, update and delete the foods"
       ></SectionTitle>
       <div>
-        <div className="mt-12 mx-12">
+        <div className="mt-12 lg:mx-12">
           <div className="overflow-x-auto">
             <table className="table table-zebra w-full">
               {/* head */}

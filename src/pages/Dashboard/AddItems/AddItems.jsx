@@ -87,7 +87,7 @@ const AddItems = () => {
         heading="Add Meal"
         subheading="Add new items in the menu by providing details"
       ></SectionTitle>
-      <div className="mt-8 mx-32">
+      <div className="mt-8 lg:mx-32">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="poppins mx-3 lg:mx-0"

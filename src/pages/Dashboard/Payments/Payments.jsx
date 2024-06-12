@@ -23,7 +23,7 @@ const Payments = () => {
         subheading={"See all the payment information you have stored"}
       ></SectionTitle>
       <div>
-        <div className="mt-12 mx-12">
+        <div className="mt-12 lg:mx-12">
           <div className="overflow-x-auto">
             <table className="table table-zebra w-full">
               {/* head */}
