@@ -37,7 +37,7 @@ const Sidebar = () => {
             className="drawer-overlay"
           ></label>
           <ul className="menu p-4 w-64 bg-[#5271FF] text-white min-h-full">
-            <img src="../../public/logo.png" alt="" />
+            <img src="../../public/logo-server.png" alt="" />
             {/* Sidebar content here */}
             {isAdmin ? (
               <>
