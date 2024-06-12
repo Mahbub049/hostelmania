@@ -90,7 +90,7 @@ const Meals = () => {
                 value={filter}
                 name="category"
                 id="category"
-                className="border w-[250px] md:w-[270px] lg:w-[300px] my-auto h-[50px] p-4 rounded-lg"
+                className="border w-[250px] mx-auto md:w-[300px] my-auto h-[50px] p-4 rounded-lg"
               >
                 <option value="">Filter By Category</option>
                 <option value="breakfast">Breakfast</option>
@@ -173,7 +173,7 @@ const Meals = () => {
             hasMore={hasNextPage}
             loading={<div>Loading...☝️</div>}
           >
-            <div className="mt-4 gridgrid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {articles &&
                 articles.map((item) => {
                   return <FoodCard key={item.id} item={item}></FoodCard>;
