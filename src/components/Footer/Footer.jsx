@@ -25,7 +25,7 @@ const Footer = () => {
           <Typography variant="h5" className="mb-6">
             <img src="../../../public/logo.png" className="w-72" alt="" />
           </Typography>
-          <div className="grid grid-cols-3 justify-between gap-4">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-between gap-4">
             {LINKS.map(({ title, items }) => (
               <ul key={title}>
                 <Typography

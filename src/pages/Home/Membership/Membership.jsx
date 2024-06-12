@@ -39,7 +39,7 @@ const Membership = () => {
           }
         ></HomeHeading>
       </div>
-      <div className="flex lg:flex-row flex-col mb-24 gap-6">
+      <div className="flex lg:flex-row flex-col mx-2 lg:mx-0 mb-24 gap-6">
         <Card color="gray" variant="gradient" className="w-full p-8">
           <CardHeader
             floated={false}

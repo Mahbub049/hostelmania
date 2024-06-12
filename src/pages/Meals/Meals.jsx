@@ -80,7 +80,7 @@ const Meals = () => {
       <div>
         <div className="bg-[linear-gradient(45deg,rgba(19,19,24,0.50),rgba(19,19,24,0.50)),url('https://images.unsplash.com/photo-1682407186023-12c70a4a35e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80')] bg-center bg-cover py-20 text-center my-8 rounded-xl mx-3 lg:mx-0">
           <p className="text-4xl  font-bold text-[#78c9f4] mons">Menu</p>
-          <div className="flex mt-8 justify-between w-9/12 mx-auto">
+          <div className="flex flex-col lg:flex-row space-y-5 lg:space-y-0 mt-8 justify-between w-9/12 mx-auto">
             <div className="flex flex-col items-start">
               <p className="text-white">Filter by Category</p>
               <select
@@ -89,8 +89,8 @@ const Meals = () => {
                 }}
                 value={filter}
                 name="category"
-                id="category"gi
-                className="border w-[300px] my-auto h-[50px] p-4 rounded-lg"
+                id="category"
+                className="border w-[250px] md:w-[270px] lg:w-[300px] my-auto h-[50px] p-4 rounded-lg"
               >
                 <option value="">Filter By Category</option>
                 <option value="breakfast">Breakfast</option>
@@ -153,14 +153,14 @@ const Meals = () => {
         </div>
 
         {filter ? (
-          <div className="mt-4 grid grid-cols-3">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {menu &&
               menu.map((item) => {
                 return <FoodCard key={item.id} item={item}></FoodCard>;
               })}
           </div>
         ) : search ? (
-          <div className="mt-4 grid grid-cols-3">
+          <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {menu &&
               menu.map((item) => {
                 return <FoodCard key={item.id} item={item}></FoodCard>;
@@ -173,7 +173,7 @@ const Meals = () => {
             hasMore={hasNextPage}
             loading={<div>Loading...☝️</div>}
           >
-            <div className="mt-4 grid grid-cols-3">
+            <div className="mt-4 gridgrid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {articles &&
                 articles.map((item) => {
                   return <FoodCard key={item.id} item={item}></FoodCard>;

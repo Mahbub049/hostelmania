@@ -2,7 +2,7 @@ import { Carousel, Typography, Button, Input } from "@material-tailwind/react";
 
 const Banner = () => {
   return (
-    <div className="mb-24">
+    <div className="mb-24 mx-2 lg:mx-0">
       <Carousel className="rounded-xl h-[600px]">
         <div className="relative h-full w-full">
           <img
@@ -41,7 +41,7 @@ const Banner = () => {
                 <Button
                   size="sm"
                   color="white"
-                  className="!absolute right-1 top-1 rounded"
+                  className="!absolute -right-10 lg:right-1 top-1 rounded"
                 >
                   Search
                 </Button>

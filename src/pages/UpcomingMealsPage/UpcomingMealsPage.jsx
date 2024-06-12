@@ -22,7 +22,7 @@ const UpcomingMealsPage = () => {
             Upcoming Meals
           </p>
         </div>
-        <div className="mt-4 grid grid-cols-3">
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {upcomingMeals.map((item) => (
             <UpcomingCard key={item.id} item={item}></UpcomingCard>
           ))}

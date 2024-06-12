@@ -38,28 +38,28 @@ const Menu = () => {
         </TabList>
 
         <TabPanel>
-          <div className="grid grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {breakfast.map((item) => (
               <FoodCard key={item.id} item={item}></FoodCard>
             ))}
           </div>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {lunch.map((item) => (
               <FoodCard key={item.id} item={item}></FoodCard>
             ))}
           </div>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {dinner.map((item) => (
               <FoodCard key={item.id} item={item}></FoodCard>
             ))}
           </div>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {menu.map((item) => (
               <FoodCard key={item.id} item={item}></FoodCard>
             ))}
