@@ -1,10 +1,10 @@
 # HostelMania
 
-**Admin Username:** admin@gmail.com 
-**Admin Password:** admin1234
-**Live Site URL:** [https://hostelmaniabd.web.app/](https://hostelmaniabd.web.app/)
+- **Admin Username:** admin@gmail.com
+- **Admin Password:** admin1234
+- **Live Site URL:** [https://hostelmaniabd.web.app/](https://hostelmaniabd.web.app/)
 
-## Features of HostelEase
+## Features of HostelMania
 
 - **Student Login and Registration:** Secure and seamless authentication for students with social login options.
 - **Meal Management:** Admins can add, update, and delete meal data efficiently.
