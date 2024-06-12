@@ -85,7 +85,7 @@ const Login = () => {
     <div className="container mx-auto">
       <StickyNavbar></StickyNavbar>
       <div className="my-24 flex justify-center">
-        <form onSubmit={handleSubmit(onSubmit)} className="lg:w-96">
+        <form onSubmit={handleSubmit(onSubmit)} className="w-96">
           <CardHeader
             variant="gradient"
             color="blue"
