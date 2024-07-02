@@ -1,33 +1,18 @@
 # HostelMania
 
+HostelMania is a comprehensive meal management system designed for student hostels, providing an efficient and user-friendly platform for students and administrators. Streamlines meal management, improves user engagement through reviews and ratings, and enhances user experience with responsive design and persistent login.
+
 - **Admin Username:** admin@gmail.com
 - **Admin Password:** admin1234
 - **Live Site URL:** [https://hostelmaniabd.web.app/](https://hostelmaniabd.web.app/)
 
-## Features of HostelMania
 
-- **Student Login and Registration:** Secure and seamless authentication for students with social login options.
-- **Meal Management:** Admins can add, update, and delete meal data efficiently.
-- **Responsive Design:** Fully responsive design ensuring a smooth experience on mobile, tablet, and desktop devices.
-- **Meal Reviews and Ratings:** Students can review and rate meals, with easy options to edit or delete their reviews.
-- **Category-Based Meal Display:** Meals are categorized into Breakfast, Lunch, and Dinner for easy navigation.
-- **Upcoming Meals:** Students can view and like upcoming meals, with premium users having special privileges.
-- **Membership Packages:** Offers Silver, Gold, and Platinum membership plans with unique benefits for each.
-- **Persistent Login:** Users stay logged in even after refreshing the page, enhancing user experience.
-- **Notifications:** Custom notifications for all CRUD operations, authentication, and other important actions.
-- **Secure Data Handling:** Environment variables are used to secure Firebase config keys and MongoDB credentials.
-- **Filter and Search for Meals** User can search, filter meals according to price and category also
-- **Profile:** User can view their profile and details.
-- **User Reviews and Requests** User can request meals and can manage them and reviews too can be updated.
-
-## Additional Sections
-
-### 1. Contact Us
-Contact information about the HostelMania are provided in the homepage with category wise meal review
-
+## Features
+- **Meal Management and Dashboard:** Admins can add, update, and delete meal data efficiently. They can serve foods, add Upcoming foods, manage users can make admin, see reviews and add foods too. Users can see their orders food in the dashboard ,they can update their review and can see payment history.
+- **Category-Based Meal Display and Upcoming Meals:** Meals categorized into Breakfast, Lunch, and Dinner. User can filter by price range, category and search using keywords too. View and like upcoming meals, with special privileges for premium users. 
+- **Membership Packages:** Silver, Gold, and Platinum plans with unique benefits. After payment users can like the upcoming foods and which can be added to food list later.
 
 ## Technology Stack
-
 - **Frontend:** React.js, HTML5, TailwindCSS
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
@@ -35,3 +20,24 @@ Contact information about the HostelMania are provided in the homepage with cate
 - **Payment Integration:** Stripe
 - **Form Handling:** react-hook-form
 
+## Cloning and Running the Project Locally
+- **Step 1:** Clone the repository.
+  ```bash
+  git clone <repository-url>
+  ```
+- **Step 2:** Navigate to the project directory
+  ```bash
+  cd hostelmania
+  ```
+- **Step 3:** Install dependencies.
+  ```bash
+  npm install
+  ```
+- **Step 4:** Create a .env file and add your Firebase config and MongoDB credentials.
+
+- **Step 5:**  Start the development server.
+  ```bash
+  npm start
+  ```
+  
+- **Step 6:** Open your browser and go to http://localhost:5000.
