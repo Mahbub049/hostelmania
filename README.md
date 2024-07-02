@@ -23,7 +23,7 @@ HostelMania is a comprehensive meal management system designed for student hoste
 ## Cloning and Running the Project Locally
 - **Step 1:** Clone the repository.
   ```bash
-  git clone <repository-url>
+  git clone https://github.com/Mahbub049/hostelmania.git
   ```
 - **Step 2:** Navigate to the project directory
   ```bash
